@@ -1,3 +1,14 @@
 CompileFlags:
-  Add: [-std=c++98, -Wall, -Wextra, -Werror]
+  Add: [-x, c++, -std=c++98, -Wall, -Wextra, -Werror]
+
+Diagnostics:
+  UnusedIncludes: Strict
+  # MissingIncludes: Strict
+  # ClangTidy: {}
+
+InlayHints:
+  Enabled: true
+
+Index:
+  Background: Build
 
