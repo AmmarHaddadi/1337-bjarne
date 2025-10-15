@@ -5,7 +5,6 @@
 #include <iomanip>
 #include <iostream>
 #include <string>
-#include <sys/_types/_u_int8_t.h>
 
 class PhoneBook {
   public:
@@ -23,12 +22,12 @@ class PhoneBook {
 		std::cin >> c.phone;
 		std::cout << "Enter darkest secret: ";
 		std::cin >> c.secret;
-
-		contacts[count] = c;
+		if (c.fname.empty())
+			contacts[count] = c;
 		count < 7 ? count++ : count = 0;
 	}
 
-	void search(u_int8_t idx) {
+	void search(int idx) {
 		std::cin >> contacts[idx].fname;
 		std::cin >> contacts[idx].lname;
 		std::cin >> contacts[idx].nick;
@@ -41,28 +40,29 @@ class PhoneBook {
 			if (contacts[i].fname.length() < 1)
 				break;
 
-			std::cout << std::setw(10) << i << '|' << std::setw(10)
-					  << format(contacts[i].fname) << '|' << std::setw(10)
-					  << format(contacts[i].lname) << '|' << std::setw(10)
+			std::cout << std::setw(10) << i << '|' << std::setw(10) << format(contacts[i].fname)
+					  << '|' << std::setw(10) << format(contacts[i].lname) << '|' << std::setw(10)
 					  << format(contacts[i].nick) << std::endl;
 		}
 	}
 
-	void displayCnt(u_int8_t i) {
+	void displayCnt(int i) {
 		if (contacts[i].fname.length() < 1) {
 			std::cout << "Empty entry" << std::endl;
 			return;
 		}
 
-		std::cout << std::left << std::setw(18)<< "First name: " << contacts[i].fname << std::endl
-				  << std::left << std::setw(18)<< "Last name: " << contacts[i].lname << std::endl
-				  << std::left << std::setw(18)<< "Nickname: " << contacts[i].nick << std::endl
-				  << std::left << std::setw(18)<< "Phone number: " << contacts[i].phone << std::endl
-				  << std::left << std::setw(18)<< "Darkest secret: " << contacts[i].secret << std::endl;
+		std::cout << std::left << std::setw(18) << "First name: " << contacts[i].fname << std::endl
+				  << std::left << std::setw(18) << "Last name: " << contacts[i].lname << std::endl
+				  << std::left << std::setw(18) << "Nickname: " << contacts[i].nick << std::endl
+				  << std::left << std::setw(18) << "Phone number: " << contacts[i].phone
+				  << std::endl
+				  << std::left << std::setw(18) << "Darkest secret: " << contacts[i].secret
+				  << std::endl;
 	}
 
   private:
-	uint8_t count;
+	int count;
 	Contact contacts[8];
 
 	std::string format(const std::string &s) {

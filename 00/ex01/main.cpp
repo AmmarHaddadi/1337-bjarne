@@ -1,5 +1,4 @@
 #include "main.hpp"
-#include <iostream>
 
 int main() {
 	PhoneBook book;
@@ -23,6 +22,6 @@ int main() {
 				book.displayCnt(option);
 		}
 		else if (inpt == "q")
-			exit(0);
+			return 0;
 	}
 }
